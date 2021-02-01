@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Atelier 1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        #d1{
+            background-color: red;
+            width: 67%;
+            border: 1px solid black;
+            display:none;
+        }
+        #d2{
+            background-color: gray;
+            border: 1 px solid black;
+            width: 40%;
+        }
+        #f1{
+        width: 30%;
+        border-radius: 5px;
+        }
+    </style>
+    <script>
+        function change(){
+            var O=document.getElementById("Oui");
+            var N=document.getElementById("Non");
+            var D=document.getElementById("d1");
+            if(O.checked==true){
+                D.style.display = "block";
+            }
+            if(N.checked==true){
+                D.style.display="none";
+            }
+    
+        }
+        function valider(){
+            var rg=new RegExp('^[a-zA-Z]+$','g');
+            var Nom1=document.getElementById("Nom");
+            var Div=document.getElementById("d2");
+            var pas=document.getElementById("password");
+            var Oui=document.getElementById("Oui");
+            var Non=document.getElementById("Non");
+            var Ville=document.getElementById("ville");
+            var ch=Nom1.value;
+            var pass=pas.value;
+            if(ch==""){
+            Div.innerHTML="Texte Vide de Nom";
+             
+             }else{
+            if(rg.test(ch)==false)
+             {
+                Div.innerHTML="Incorrect !";            
+             }else{
+            
+             if(pass=="")
+            {
+             Div.innerHTML="Password Obligatoire !!";
+             }else{
+                if((Non.checked==false && Oui.checked==false)||Non.checked==true){
+                Div.innerHTML="Selectionner OUI";
+                }else{
+                    if(Oui.checked){
+                        if(Ville.value==0){
+                            Div.innerHTML="Selectionner une ville !";
+                        }else{
+                            Div.innerHTML="mission complet !"
+                        }
+                    }
+                }
+             }
+            }
+               }
+            }
+    
+         
+    </script>
+</head>
+<body>
+    <form action="">
+        <fieldset id="f1">
+            <legend>Atelier</legend>
+            <label for="Non">Nom :</label><br>
+            <input type="text" name="Nom" id="Nom" placeholder="Votre Nom"><br>
+            <label for="">Password :</label><br>
+            <input type="password" name="password" id="password" placeholder="Password"><br>
+            <label for="">Afficher Div :</label>
+            <input type="radio" id="Oui" name="gender" value="Oui" onchange="change()">
+            <label for="male">Oui</label>
+            <input type="radio" id="Non" name="gender" value="Non" onchange="change()">
+            <label for="female">Non</label>
+            <div id="d1" >
+                <label for="ville">Selectionner une ville :</label>
+                    <select name="ville" id="ville" >
+                    <option value="0">Selectionner</option>
+                    <option value="1">Beni Mellal</option>
+                    <option value="2">Azillal</option>
+                    <option value="3">Afourer</option>
+                    <option value="4">Tadla</option>
+                    </select>
+            </div><br>
+            <input type="button" value="Se connecter" onclick="valider()">
+            <input type="reset" ><br><br>
+            <div id="d2"></div>
+        </fieldset>
+    </form>
+</body>
+</html>
